@@ -9,7 +9,7 @@ class TestScoreCalculation(unittest.TestCase):
 		pass
 
 	def test_sanity_check_gre2gmat(self):
-		ranges = range(MIN_GRE,MAX_GRE,1)
+		ranges = range(MIN_GRE,MAX_GRE)
 		for v in ranges:
 			for q in ranges:
 				gmat = gre2gmat(gre_verbal=v,gre_quant=q)

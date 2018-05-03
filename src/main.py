@@ -40,7 +40,11 @@ def gre2gmat(gre_verbal,gre_quant):
 	if v == BAD_INPUT_RETURN or q == BAD_INPUT_RETURN:
 		gmat = BAD_INPUT_RETURN
 	else:
-		gmat = score_table.loc[q,v]
+		try:
+			gmat = score_table.loc[q,v]
+		except KeyError:
+			gmat = rough_gre2gmat(gre_verbal=v,gre_quant=q)
+
 	return gmat
 
 
@@ -69,7 +73,7 @@ def rough_gre2gmat(gre_verbal,gre_quant):
 		elif gmat <= MIN_GMAT:
 			gmat = MIN_GMAT
 
-	return gmat
+	return int(gmat - gmat%10)
 def rougher_gre2gmat(gre_verbal,gre_quant):
 	"""
 	A terrible approximation for gmat score. Derived with love by yours truly
@@ -94,7 +98,7 @@ def rougher_gre2gmat(gre_verbal,gre_quant):
 		elif gmat <= MIN_GMAT:
 			gmat = MIN_GMAT
 
-	return gmat
+	return int(gmat - gmat%10)
 
 
 

@@ -3,7 +3,7 @@ from data_table import score_table
 from constants import MAX_GRE, MIN_GRE, BAD_INPUT_RETURN, MIN_GMAT, MAX_GMAT
 
 
-def validate_score_input(v,q):
+def _validate_score_input(v,q):
 	try:
 		verbal = int(v)
 	except:
@@ -16,11 +16,11 @@ def validate_score_input(v,q):
 		return BAD_INPUT_RETURN, BAD_INPUT_RETURN
 
 	if verbal > MAX_GRE or verbal < MIN_GRE:
-		warnings.warn("Verbal score: {} is not between {} and {}\nReturning {}".format(verbal,MIN_SCORE,MAX_SCORE,BAD_INPUT_RETURN))
+		warnings.warn("Verbal score: {} is not between {} and {}\nReturning {}".format(verbal,MIN_GRE,MAX_GRE,BAD_INPUT_RETURN))
 		return BAD_INPUT_RETURN, BAD_INPUT_RETURN
 
 	if quant > MAX_GRE or quant < MIN_GRE:
-		warnings.warn("Quant score: {} is not between {} and {}\nReturning {}".format(quant,MIN_SCORE,MAX_SCORE,BAD_INPUT_RETURN))
+		warnings.warn("Quant score: {} is not between {} and {}\nReturning {}".format(quant,MIN_GRE,MAX_GRE,BAD_INPUT_RETURN))
 		return BAD_INPUT_RETURN, BAD_INPUT_RETURN
 
 	return verbal, quant
@@ -36,7 +36,7 @@ def gre2gmat(gre_verbal,gre_quant):
 	:return: Predicted GMAT score
 	:rtype: int
 	"""
-	v,q = validate_score_input(gre_verbal,gre_quant)
+	v,q = _validate_score_input(gre_verbal,gre_quant)
 	if v == BAD_INPUT_RETURN or q == BAD_INPUT_RETURN:
 		gmat = BAD_INPUT_RETURN
 	else:
@@ -59,7 +59,7 @@ def rough_gre2gmat(gre_verbal,gre_quant):
 	:rtype: int
 	"""
 
-	v,q = validate_score_input(gre_verbal,gre_quant)
+	v,q = _validate_score_input(gre_verbal,gre_quant)
 	if v == BAD_INPUT_RETURN or q == BAD_INPUT_RETURN:
 		gmat = BAD_INPUT_RETURN
 	else:
@@ -83,7 +83,7 @@ def rougher_gre2gmat(gre_verbal,gre_quant):
 	:rtype: int
 	"""
 	warnings.warn("\nThis function is inappropriately inaccurate.")
-	v,q = validate_score_input(gre_verbal,gre_quant)
+	v,q = _validate_score_input(gre_verbal,gre_quant)
 	if v == BAD_INPUT_RETURN or q == BAD_INPUT_RETURN:
 		gmat = BAD_INPUT_RETURN
 	else:

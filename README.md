@@ -15,7 +15,7 @@ sudo pip install gre2gmat
 
 ## Usage
 
-```
+```python
 >>> from gre2gmat.conversions import gre2gmat
 >>> gre2gmat(gre_verbal=170,gre_quant=160)
 700

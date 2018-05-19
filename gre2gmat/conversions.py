@@ -16,11 +16,11 @@ def _validate_score_input(v,q):
 		return BAD_INPUT_RETURN, BAD_INPUT_RETURN
 
 	if verbal > MAX_GRE or verbal < MIN_GRE:
-		warnings.warn("Verbal score: {} is not between {} and {}\nReturning {}".format(verbal,MIN_GRE,MAX_GRE,BAD_INPUT_RETURN))
+		warnings.warn("Verbal score of {} is not between {} and {}\nReturning {}".format(verbal,MIN_GRE,MAX_GRE,BAD_INPUT_RETURN))
 		return BAD_INPUT_RETURN, BAD_INPUT_RETURN
 
 	if quant > MAX_GRE or quant < MIN_GRE:
-		warnings.warn("Quant score: {} is not between {} and {}\nReturning {}".format(quant,MIN_GRE,MAX_GRE,BAD_INPUT_RETURN))
+		warnings.warn("Quant score of {} is not between {} and {}\nReturning {}".format(quant,MIN_GRE,MAX_GRE,BAD_INPUT_RETURN))
 		return BAD_INPUT_RETURN, BAD_INPUT_RETURN
 
 	return verbal, quant
@@ -73,7 +73,7 @@ def rough_gre2gmat(gre_verbal,gre_quant):
 		elif gmat <= MIN_GMAT:
 			gmat = MIN_GMAT
 
-	return int(gmat - gmat%10)
+	return int(round(gmat,-1))
 def rougher_gre2gmat(gre_verbal,gre_quant):
 	"""
 	A terrible approximation for gmat score. Derived with love by yours truly
@@ -98,7 +98,7 @@ def rougher_gre2gmat(gre_verbal,gre_quant):
 		elif gmat <= MIN_GMAT:
 			gmat = MIN_GMAT
 
-	return int(gmat - gmat%10)
+	return int(round(gmat,-1))
 
 
 
